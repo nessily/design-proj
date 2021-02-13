@@ -24,3 +24,7 @@ def home (request):
     idn = database.child('Data').child('idn').get().val() 
     projectname = database.child('Data').child('projectname').get().val() 
     return render(request,"Home.html",{"day":day,"idn":idn,"projectname":projectname })
+def login (request):
+    username = database.child('User').child('username').get().val()
+    password = database.child('User').child('password').get().val()
+    return render(request,"Login.html",{"username":username,"password":password })

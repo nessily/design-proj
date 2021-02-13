@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from turtles_proj.views import home
+from turtles_proj.views import login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    path('', login),
+    path('home/', home),
 ]

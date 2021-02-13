@@ -2,7 +2,8 @@
 
 from django.shortcuts import render 
 import pyrebase 
-  
+
+#connection from firebase to project  
 config={ 
     "apiKey": "AIzaSyDCjOYgDFdk1wgbSZgajOJrjeVtaNDkvrQ", 
     "authDomain": "turtles-ee1ed.firebaseapp.com", 
@@ -16,7 +17,8 @@ config={
 firebase=pyrebase.initialize_app(config) 
 authe = firebase.auth() 
 database=firebase.database() 
-  
+
+#Using data from firebase, return values to html file displayed on web page  
 def home (request): 
     day = database.child('Data').child('day').get().val() 
     idn = database.child('Data').child('idn').get().val() 

@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'turtles_proj.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+# Using Firebase instead of included database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

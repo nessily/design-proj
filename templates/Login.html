@@ -1,23 +1,148 @@
+
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> 
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login Page</title> 
+        <style type ="text/css">
+    *{
+        padding:0;
+        margin: 0;
+    }
+    body{
+        background: url() no-repeat;
+        background-size: cover;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .container{
+        position: relative;
+        margin-top: 100px;
+        width: 450px;
+        height:auto;
+        background:papayawhip;
+        border-radius: 5px;
+    }
+    .label{
+        padding: 20px 130px;
+        font-size: 35px;
+        font-weight: bold;
+        color:darkslategrey;
+    }
+    .LoginForm{
+        padding: 20px 40px;
+    }
+    .LoginForm .font{
+        font-size: 20px;
+        color:darkslategrey;
+        margin: 5px 0;
+    }
+    .LoginForm input{
+        height: 40px;
+        width: 350px;
+        padding: 0 5px;
+        font-size: 20px;
+        outline: none;
+        border: 1px solid slategrey;
+    }
+    .LoginForm .font2{
+        margin-top: 30px;
+    }
+    .LoginForm button{
+        margin: 45px 0 30px 0;
+        height: 45px;
+        width: 365px;
+        font-size: 20px;
+        color: white;
+        outline: none;
+        cursor: pointer;
+        font-weight: bold;
+        background:darkslategrey;
+        border-radius: 3px;
+        border: 1px solid slategrey;
+        transition: .5s;
+    
+    }
+    .LoginForm button:hover{
+        background:lightslategrey;
+    }
+    .LoginForm #user_error,
+    .LoginForm #pass_error{
+        margin-top: 5px;
+        width: 345px;
+        font-size: 18px;
+        color:darkslateblue;
+        background: rgba(72,61,139,0.1);
+        text-align: center;
+        padding: 5px 8px;
+        border-radius: 3px;
+        border: 1px solid #A19CC4;
+        display: none;
+    }
+</style>
 </head>
 <body>
-    <H1>
-        Login Test:
-    </H1>
-    <p>
-        username: <b>{{username}}</b> <br></br>
-        password: <b>{{password}}</b>
-    </p>
-    <div id="LoginForm">
-    <div id="header"> </div>
-    <input type="username" placeholder="username" id="username"/>
-    <input type="password" placeholder="password" id="password"/>
-    <button onclick="login()" id="login"> Login </button>
-    </div>  
+    <div class="container">
+        <h1 class="label">Login</h1>
+        <form class="LoginForm" action="Home.html" method="GET" name="form" onsubmit="return validated()">
+            <div class ="font">Username</div>
+            <input autocomplete="off" type="text" name="" id="user">
+            <div id="user_error">Wrong Username</div>
+            <div class="font font2">Password</div>
+            <input type="password" name="" id="pass">
+            <div id="pass_error">Wrong Password</div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+<script>
+database=firebase.database() 
+username = database.child('User').child('username').get().val()
+password = database.child('User').child('password').get().val()
+
+var user = document.getElementById("user").value;
+var pass = document.getElementById("pass").value;
+
+var user_error = document.getElementById('user_error');
+var pass_error = document.getElementById('pass_error');
+
+//user.addEventListener('textInput',user_Verify);
+//pass.addEventListener('textInput',pass_Verify);
+
+
+function validated(){
+
+        if (username != user){
+        username.style.border = "1px solid red";
+        user_error.style.display = "block";
+        username.focus();
+        return false;
+
+    }
+        if (password != pass){
+        password.style.border = "1px solid red";
+        pass_error.style.display = "block";
+        password.focus();
+        return false;
+
+    }
+}
+function user_Verify(){
+    if (username = user){
+        username.style.border = "1px solid silver";
+        user_error.style.display = "none";
+        return true;
+    }
+}
+function pass_Verify(){
+    if (password = pass){
+        password.style.border = "1px solid silver";
+        pass_error.style.display = "none";
+        return true;
+    }
+}
+    </script>   
 </body>
 </html>

@@ -4,8 +4,10 @@
 <head> 
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Page</title> 
-        <style type ="text/css">
+    <title>Login Page</title>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+    <style type ="text/css">
     *{
         padding:0;
         margin: 0;
@@ -23,21 +25,21 @@
         margin-top: 100px;
         width: 450px;
         height:auto;
-        background:papayawhip;
+        background-color:darkgrey;
         border-radius: 5px;
     }
     .label{
         padding: 20px 130px;
         font-size: 35px;
         font-weight: bold;
-        color:darkslategrey;
+        color:midnightblue;
     }
     .LoginForm{
         padding: 20px 40px;
     }
     .LoginForm .font{
         font-size: 20px;
-        color:darkslategrey;
+        color:midnightblue;
         margin: 5px 0;
     }
     .LoginForm input{
@@ -85,64 +87,16 @@
 </style>
 </head>
 <body>
-    <div class="container">
+    <form action="/home/" method="post">
+    {% csrf_token %}
+    <div id="loginDiv" class="container">
         <h1 class="label">Login</h1>
-        <form class="LoginForm" action="Home.html" method="GET" name="form" onsubmit="return validated()">
-            <div class ="font">Username</div>
-            <input autocomplete="off" type="text" name="" id="user">
-            <div id="user_error">Wrong Username</div>
+            <div class ="font">Email</div>
+            <input type="email" class="input" name="email" id="email">
             <div class="font font2">Password</div>
-            <input type="password" name="" id="pass">
-            <div id="pass_error">Wrong Password</div>
-            <button type="submit">Login</button>
-        </form>
+            <input type="password" class="input" name="password" id="password">
+            <input type="submit" value="Login">
     </div>
-<script>
-database=firebase.database() 
-username = database.child('User').child('username').get().val()
-password = database.child('User').child('password').get().val()
-
-var user = document.getElementById("user").value;
-var pass = document.getElementById("pass").value;
-
-var user_error = document.getElementById('user_error');
-var pass_error = document.getElementById('pass_error');
-
-//user.addEventListener('textInput',user_Verify);
-//pass.addEventListener('textInput',pass_Verify);
-
-
-function validated(){
-
-        if (username != user){
-        username.style.border = "1px solid red";
-        user_error.style.display = "block";
-        username.focus();
-        return false;
-
-    }
-        if (password != pass){
-        password.style.border = "1px solid red";
-        pass_error.style.display = "block";
-        password.focus();
-        return false;
-
-    }
-}
-function user_Verify(){
-    if (username = user){
-        username.style.border = "1px solid silver";
-        user_error.style.display = "none";
-        return true;
-    }
-}
-function pass_Verify(){
-    if (password = pass){
-        password.style.border = "1px solid silver";
-        pass_error.style.display = "none";
-        return true;
-    }
-}
-    </script>   
-</body>
+</form>
+</body> 
 </html>

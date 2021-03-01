@@ -21,5 +21,6 @@ from turtles_proj.views import login
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login),
-    path('Home.html/', home),
+    path('home/', home),
+    path('login/', login),
 ]

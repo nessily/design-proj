@@ -15,16 +15,20 @@ config={
     "measurementId": "G-K5JR3QVYWB"
 } 
 firebase=pyrebase.initialize_app(config) 
-authe = firebase.auth() 
+auth = firebase.auth() 
 database=firebase.database() 
 
 #Using data from firebase, return values to html file displayed on web page  
 def home (request): 
     day = database.child('Data').child('day').get().val() 
     idn = database.child('Data').child('idn').get().val() 
-    projectname = database.child('Data').child('projectname').get().val() 
+    projectname = database.child('Data').child('projectname').get().val()
+
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+    user = auth.sign_in_with_email_and_password(email,password)
+
     return render(request,"Home.html",{"day":day,"idn":idn,"projectname":projectname })
 def login (request):
-    username = database.child('User').child('username').get().val()
-    password = database.child('User').child('password').get().val()
-    return render(request,"Login.html",{"username":username,"password":password })
+    return render(request,"Login.html")
+

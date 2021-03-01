@@ -7,6 +7,7 @@
     <title>Turtle Project</title> 
 </head> 
 <body> 
+    {% csrf_token %}
 <H1> 
 Database Test:
     </H1> 
@@ -21,6 +22,11 @@ Database Test:
     <p> 
         Day is <b>{{ day }}</b> 
     </p> 
-<br> 
+<br>
+<form action="/login/" method="post">
+    {% csrf_token %}
+    <input type="submit" value="LogOut">
+
+</form>
 </body> 
 </html>

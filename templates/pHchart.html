@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>pH Trends</title> 
+</head> 
+<body> 
+    {% csrf_token %}
+<H1> 
+Database Test:
+    </H1> 
+    
+    <p> 
+        <b>{{ day1 }}</b> pH: <b>{{ value1 }}</b><br> 
+        <b>{{ day2 }}</b> pH: <b>{{ value2 }}</b><br>
+        <b>{{ day3 }}</b> pH: <b>{{ value3 }}</b><br>
+        <b>{{ day4 }}</b> pH: <b>{{ value4 }}</b><br>
+        <b>{{ day5 }}</b> pH: <b>{{ value5 }}</b><br>
+        <b>{{ day6 }}</b> pH: <b>{{ value6 }}</b><br>
+        <b>{{ day7 }}</b> pH: <b>{{ value7 }}</b><br>   
+    </p> 
+<br>
+<form action="/login/" method="post">
+    {% csrf_token %}
+    <input type="submit" value="LogOut">
+
+</form>
+</body> 
+</html>

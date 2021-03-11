@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from turtles_proj.views import home
 from turtles_proj.views import login
+from turtles_proj.views import pH
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login),
     path('home/', home),
     path('login/', login),
+    path('pH/',pH),
 ]

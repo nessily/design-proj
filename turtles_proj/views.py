@@ -26,7 +26,12 @@ def home (request):
 
     email = request.POST.get('email')
     password = request.POST.get('password')
-    user = auth.sign_in_with_email_and_password(email,password)
+    try:
+        user = auth.sign_in_with_email_and_password(email,password)
+    except:
+        errorMessage = "Email/Password is incorrect"
+        return render(request,"Login.html",{"errorMessage":errorMessage})
+
 
     return render(request,"Home.html",{"day":day,"idn":idn,"projectname":projectname })
 def login (request):

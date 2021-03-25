@@ -4,35 +4,120 @@
 <head> 
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Turtle Project</title> 
+    <title>Turtle Project</title>
+    <style type ="text/css">
+        *{
+            padding:0px;
+            margin:0px;
+            height:80%;
+            
+        }
+        body{
+            background:rgb(227, 231, 235);
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        header{
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            padding:12px;
+        }
+        .headerpos {
+            position: fixed;
+            background-color: rgba(4, 30, 54, .7);
+            
+        }   
+        .hero {
+            background-image: linear-gradient( rgba(159, 168, 170, 0.5), rgba(3, 50, 61, 0.5) ), url("https://media0.giphy.com/media/dXi0qrwYhBZXdryEN1/giphy-downsized-large.gif");
+            height:110%;
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size:cover;
+            position:relative;
+        }
+        .heroText {
+            text-align: center;
+            position: absolute;
+            top: 20%;
+            left: 45%;
+            color: rgb(168, 218, 241);
+        }
+        .container{
+            position:relative;
+            padding: 30px;
+            margin: 100px;
+            width: 200px;
+            height: 70px;
+            text-align:center;
+            font-size: 22px;
+        }
+        main {
+            margin: 10px;
+            padding: 10px;
+            text-align:center;
+            display:initial;
+        }
+        nav {
+            display:inline;
+            justify-content:space-around;
+            align-items:unset;
+        }
+        ul {
+            list-style: none;
+            display:flex;
+        }
+        li {
+            margin: 1rem;
+        }
+        a {
+            text-decoration: none;
+            color:rgb(192, 219, 243);
+            display:flex;
+            font-size: 18px;
+        }
+        p{
+            color:rgb(175, 184, 190);
+        }
+        .data{
+            background-color: #647e8d;
+            width: 100%;
+            display:flex;
+        }
+
+</style>
 </head> 
 <body> 
     {% csrf_token %}
-<H1> 
-Database Test:
-    </H1> 
-    <p>
-        Project Name is <b>{{ projectname }}</b>
-    </p>
-<br/> 
-    <p> 
-        Project Id is <b>{{ idn }}</b>
-    </p> 
-<br> 
-    <p> 
-        Day is <b>{{ day }}</b> 
-    </p> 
-<br>
-<form action="/login/" method="post">
-    {% csrf_token %}
-    <input type="submit" value="LogOut">
+        <div class="hero">
+            <header class="headerpos">
+                <nav>
+                    <ul>
+                    <li> <a href="/journal/">Journal</a></li>
+                    <li> <a href="/charts/">Data Charts</a></li> 
+                    <li> <a href='/login/'>Log Out </a></li>
+                    </ul>
+                </nav>
+            </header>
+            <div class="heroText">
+                <h1>Turtle Tank</h1>
+            </div>
+        </div>
 
-</form>
-<br>
-<br>
-<form action="/pH/" method="post">
-    {% csrf_token %}
-    <input type="submit" value="pH chart">
-</form>
+    <main>
+        <section class="data">
+                <p>
+                    Welcome back! The tank's stats today:
+                </p>
+                <p class="container">
+                    Project Name:<br><br> <b>{{ projectname }}</b>
+                </p>
+                <p class="container">
+                    Project Id:<br><br> <b>{{ idn }}</b>
+                </p>
+                <p class="container"> 
+                    Day:<br><br> <b>{{ day }}</b> 
+                </p>
+        </section>
+    </main>
 </body> 
 </html>

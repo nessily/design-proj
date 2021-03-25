@@ -14,15 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls import url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from turtles_proj.views import home
 from turtles_proj.views import login
-from turtles_proj.views import pH
+from turtles_proj.views import LineChart
+from turtles_proj.views import charts
+from turtles_proj.views import home_loggedin
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login),
     path('home/', home),
+    path('home_loggedin/',home_loggedin),
     path('login/', login),
-    path('pH/',pH),
+    path('charts/',charts),
+    path('chartvalues/',LineChart, name='LineChart'),
+    
 ]
+urlpatterns += staticfiles_urlpatterns()

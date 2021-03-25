@@ -1,6 +1,7 @@
 
 
 from django.shortcuts import render 
+from django.http import JsonResponse
 import pyrebase 
 
 #connection from firebase to project  
@@ -34,9 +35,23 @@ def home (request):
 
 
     return render(request,"Home.html",{"day":day,"idn":idn,"projectname":projectname })
+#go back to home page without pass/email error
+def home_loggedin(request):
+    day = database.child('Data').child('day').get().val() 
+    idn = database.child('Data').child('idn').get().val() 
+    projectname = database.child('Data').child('projectname').get().val()
+
+    return render(request,"Home.html",{"day":day,"idn":idn,"projectname":projectname })
+#take to login page
 def login (request):
     return render(request,"Login.html")
-def pH (request):
+
+def charts(request):
+        return render(request, "pHchart.html")
+
+#grab database data put in labels, values. return as a jsonresponse for charts
+def LineChart(request):
+
     day1 = database.child('ph/1').child('day').get().val()
     value1 = database.child('ph/1').child('value').get().val()
     day2 = database.child('ph/2').child('day').get().val()
@@ -51,7 +66,11 @@ def pH (request):
     value6 = database.child('ph/6').child('value').get().val()
     day7 = database.child('ph/7').child('day').get().val()
     value7 = database.child('ph/7').child('value').get().val()
-    return render(request,"pHchart.html",{"day1":day1,"value1":value1,"day2":day2,
-    "value2":value2,"day3":day3,"value3":value3,"day4":day4,"value4":value4,
-    "day5":day5,"value5":value5,"day6":day6,"value6":value6,"day7":day7,"value7":value7})
 
+    labels = [day1, day2, day3, day4, day5, day6, day7]
+    values = [value1, value2, value3, value4, value5, value6, value7]
+
+    return JsonResponse(data={
+        'labels': labels,
+        'values': values,
+    })

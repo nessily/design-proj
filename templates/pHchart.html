@@ -10,25 +10,26 @@
             margin: 0;
         }
         body{
-            background:rgb(227, 231, 235);
+            background-image:url("https://www.ppt-backgrounds.net/thumbs/ocean-desktop-template-keynote.jpeg");
+            background-repeat: no-repeat;
+            background-size:100%;
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
         header{
             position: absolute;
             width: 100%;
             height: 60px;
-            padding: 20px;
+            padding: 12px;
         }
         .header-stay {
             position: fixed;
-            background-color: rgb(168, 218, 241, .6);
+            background-color: rgba(4, 30, 54,.9);
             
         } 
         nav {
             display:inline;
             justify-content:space-around;
-            padding: 20px;
-            align-items:initial;
+            align-items:unset;
         }
         ul {
             list-style: none;
@@ -39,8 +40,9 @@
         }
         a {
             text-decoration: none;
-            color:rgb(7, 32, 54);
+            color:rgb(192, 219, 243);
             display:flex;
+            font-size: 18px;
         }
     </style>
 </head> 
@@ -51,6 +53,7 @@
             <ul>
             <li> <a href="/home_loggedin/">Home</a></li> 
             <li> <a href="/journal/">Journal</a></li>
+            <li> <a href="/charts">Charts</a></li>
             <li> <a href='/login/'>Log Out </a></li>
             </ul>
         </nav>
@@ -58,7 +61,7 @@
     {% block content %}
 
 
-    <div style="width: 70%; padding: 150px;">
+    <div style="width: 70%; padding: 190px;">
       <canvas id="LineChart" data-url="{% url 'LineChart' %}"></canvas>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -79,25 +82,41 @@
                 datasets: [{
                   label: 'pH Value',
                   data: data.values,
-                  backgroundColor:'rgb(18, 50, 78, .4)',
-                  borderColor:'rgb(168, 218, 241)',
+                  backgroundColor:'rgb(18, 50, 78,.9)',
+                  borderColor:'rgb(18, 50, 78)',
                   fill: true,
                 }]          
               },
               options: {
                 responsive: true,
                 legend: {
+                    labels:{
+                        fontColor:'rgb(18, 50, 78)',
+                    },
                     position: 'top',
                 },
                 title: {
                     text: '7 Day pH Trend',
+                    fontColor:'rgb(18, 50, 78)',
                     display: true,
                 },
                 elements: {
                     line:{
                         tension: .5,
                     },
-                }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: 'rgb(18, 50, 78)',
+                        },
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: 'rgb(18, 50, 78)',
+                        },
+                    }],
+                },
               }
             });
   

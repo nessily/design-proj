@@ -22,26 +22,11 @@
             height: 60px;
             padding:12px;
         }
-        .headerpos {
+        .header-stay {
             position: fixed;
-            background-color: rgba(4, 30, 54,.8);
+            background-color: rgba(4, 30, 54);
             
-        }   
-        .hero {
-            background-image: linear-gradient( rgba(159, 168, 170, 0.5), rgba(3, 50, 61, 0.5) ), url("https://media0.giphy.com/media/dXi0qrwYhBZXdryEN1/giphy-downsized-large.gif");
-            height:110%;
-            background-position:center;
-            background-repeat: no-repeat;
-            background-size:cover;
-            position:relative;
-        }
-        .heroText {
-            text-align: center;
-            position: absolute;
-            top: 20%;
-            left: 45%;
-            color: rgb(168, 218, 241);
-        }
+        }    
         .container{
             position:relative;
             padding: 30px;
@@ -88,34 +73,16 @@
 </head> 
 <body> 
     {% csrf_token %}
-        <div class="hero">
-            <header class="headerpos">
-                <nav>
-                    <ul>
-                    <li> <a href="/home_loggedin/">Home</a></li> 
-                    <li> <a href="/journal/">Journal</a></li>
-                    <li> <a href="/charts">Charts</a></li>
-                    <li> <a href='/login/'>Log Out </a></li>
-                    </ul>
-                </nav>
-            </header>
-        </div>
+    <header class="header-stay">
+        <nav>
+            <ul>
+            <li> <a href="/home_loggedin/">Home</a></li> 
+            <li> <a href="/journal/">Journal</a></li>
+            <li> <a href="/charts">Charts</a></li>
+            <li> <a href='/login/'>Log Out </a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main>
-        <section class="data">
-                <p>
-                    Welcome back! The tank's stats today:
-                </p>
-                <p class="container">
-                    Project Name:<br><br> <b>{{ projectname }}</b>
-                </p>
-                <p class="container">
-                    Project Id:<br><br> <b>{{ idn }}</b>
-                </p>
-                <p class="container"> 
-                    Day:<br><br> <b>{{ day }}</b> 
-                </p>
-        </section>
-    </main>
 </body> 
 </html>

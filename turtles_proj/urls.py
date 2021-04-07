@@ -22,6 +22,7 @@ from turtles_proj.views import login
 from turtles_proj.views import LineChart
 from turtles_proj.views import charts
 from turtles_proj.views import home_loggedin
+from turtles_proj.views import journal
 
 
 
@@ -31,6 +32,7 @@ urlpatterns = [
     path('home/', home),
     path('home_loggedin/',home_loggedin),
     path('login/', login),
+    path('journal/',journal),
     path('charts/',charts),
     path('chartvalues/',LineChart, name='LineChart'),
     

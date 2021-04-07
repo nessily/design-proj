@@ -49,6 +49,9 @@ def login (request):
 def charts(request):
         return render(request, "pHchart.html")
 
+def journal(request):
+        return render(request, "Journal.html")
+
 #grab database data put in labels, values. return as a jsonresponse for charts
 def LineChart(request):
 

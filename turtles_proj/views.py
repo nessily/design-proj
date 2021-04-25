@@ -22,7 +22,9 @@ database=firebase.database()
 #Using data from firebase, return values to html file displayed on web page  
 def home (request): 
     day = database.child('Data').child('day').get().val() 
-    idn = database.child('Data').child('idn').get().val() 
+    C = database.child('Arduino').child('Temp').child('C').get().val() 
+    F = database.child('Arduino').child('Temp').child('F').get().val()
+    roundF = round(F,1)
     projectname = database.child('Data').child('projectname').get().val()
 
     email = request.POST.get('email')
@@ -34,14 +36,17 @@ def home (request):
         return render(request,"Login.html",{"errorMessage":errorMessage})
 
 
-    return render(request,"Home.html",{"day":day,"idn":idn,"projectname":projectname })
+    return render(request,"Home.html",{"day":day,"C":C,"roundF":roundF, "projectname":projectname })
 #go back to home page without pass/email error
 def home_loggedin(request):
     day = database.child('Data').child('day').get().val() 
     idn = database.child('Data').child('idn').get().val() 
+    C = database.child('Arduino').child('Temp').child('C').get().val() 
+    F = database.child('Arduino').child('Temp').child('F').get().val()
+    roundF = round(F,1)
     projectname = database.child('Data').child('projectname').get().val()
 
-    return render(request,"Home.html",{"day":day,"idn":idn,"projectname":projectname })
+    return render(request,"Home.html",{"day":day,"C":C,"roundF":roundF, "projectname":projectname })
 #take to login page
 def login (request):
     return render(request,"Login.html")
@@ -49,7 +54,7 @@ def login (request):
 def charts(request):
         return render(request, "pHchart.html")
 
-def journal(request):
+def reminders(request):
         return render(request, "Journal.html")
 
 #grab database data put in labels, values. return as a jsonresponse for charts

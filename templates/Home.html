@@ -43,16 +43,15 @@
             color: rgb(168, 218, 241);
         }
         .container{
+            font-family: "Roboto",sans-serif;
             position:relative;
             padding: 20px;
-            margin-top: 100px;
-            margin-left:150px;
-            width: 200px;
+            margin-top: 160px;
+            margin-left:140px;
+            width: 140px;
             height: 100px;
-            text-align:center;
             font-size: 90px;
-            letter-spacing: -1px;
-            font-weight: bold; 
+            font-weight:bold; 
             color:rgb(175, 184, 190);
         }
         main {
@@ -101,15 +100,105 @@
         .data{
             background-color: rgba(4, 30, 54,.9);
             width: 100%;
-            height:50%;
+            height:100%;
+            margin-top: -50px;
             box-sizing: border-box;
             display:flex;
             padding: 76px 0 104px;
         }
+        .container2{
+            font-family: "Roboto",sans-serif;
+            position:relative;
+            margin-top: 160px;
+            margin-left:30px;
+            width: 20px;
+            height: 100px;
+            text-align:center;
+            font-size: 50px;
+            font-weight:normal; 
+            color:rgb(175, 184, 190);
+        }
+        .container3{
+            font-family: "Roboto",sans-serif;
+            position:relative;
+            margin-top: 200px;
+            margin-left:-20px;
+            width: 30px;
+            height: 100px;
+            text-align:center;
+            font-size: 25px;
+            font-weight: normal; 
+            color:rgb(175, 184, 190);
+        }
+        .container4{
+            font-family: "Roboto",sans-serif;
+            position:absolute;
+            width:100%;
+            height:20px;
+            margin-top: 15px;
+            margin-left:20px;
+            text-align:center;
+            font-size: 30px;
+            font-weight:bold; 
+            color:rgb(175, 184, 190);
+        }
+        .container5{
+            font-family: "Roboto",sans-serif;
+            position:absolute;
+            width:340px;
+            height:20px;
+            margin-top: 160px;
+            margin-left:820px;
+            text-align:center;
+            font-size: 34px;
+            font-weight:bold; 
+            color:rgb(175, 184, 190);
+        }
+        .container6{
+            font-family: "Roboto",sans-serif;
+            position:absolute;
+            width:340px;
+            height:60px;
+            margin-top: 260px;
+            margin-left:820px;
+            text-align:center;
+            align-items: center;
+            font-weight:bold; 
+            color:rgb(175, 184, 190);
+        }
+        .button {
+            border: 2px transparent;
+            border-radius: 2px;
+            font-size: 14px;
+            padding:10px;
+            color:rgba(4, 30, 54);
+            background-color: rgb(175, 184, 190);
+            
+        }
 
 </style>
+<script>
+    function clickFeed() {
+      if(typeof(Storage) !== "undefined") {
+        if (localStorage.fed) {
+            localStorage.fed = new Date().toLocaleString();
+            location.reload();
+        } else {
+            localStorage.fed = 1;
+        }
+            document.getElementById('date_time_button').innerHTML = new Date().toLocaleString();
+      } else {
+            document.getElementById("result").innerHTML = "error";
+      }
+    }
+    function myFunction() { 
+        document.getElementById("time").innerHTML = "Last fed: " + localStorage.fed;
+    }
+
+
+</script>
 </head> 
-<body> 
+<body onload="myFunction()"> 
     {% csrf_token %}
         <div class="hero">
             <header class="headerpos">
@@ -127,27 +216,24 @@
     <main>
 
         <div class="data">
-                <p class="container">
-                    7.5
+                
+                <p class="container4">
+                   Welcome Back! <br> <br> Current Tank Stats:
                 </p>
+                <p class="container">
+                    7.5 
+                </p>
+                <p class="container3">pH</p>
                 <p class="container">
                     {{ roundF }} 
                 </p>
-                <p class="container"> 
-                    {{ day }}
-                </p>
+                <p class="container2">°</p>
+                <div id="time" class="container5"></div>
+                <div class="container6">
+                    <button class="button" type="button" onclick="clickFeed()">
+                        Just fed!</button>
+                </div>
         </div>
-        <div class="data">
-            <p class="descrip">
-                pH Value
-            </p>
-            <p class="descrip">
-                Temp Value
-            </p>
-            <p class="descrip">
-                Day
-            </p>
-            </div>
     </main>
 </body> 
 </html>
